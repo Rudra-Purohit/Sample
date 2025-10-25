@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarvakshetra - IT Field Courses</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: ;
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .logo::before {
+            content: "🎓";
+            margin-right: 0.5rem;
+            font-size: 2.2rem;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.5));
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e2e8f0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8));
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.05) 2px,
+                rgba(255, 255, 255, 0.05) 4px
+            );
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 2;
+
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .course-card {
+            background: 
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        /* .course-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }*/
+
+        .course-card:hover::after {
+            opacity: 0.3;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.2),
+                0 0 40px rgba(255, 107, 107, 0.3);
+        }
+
+        .course-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            
+        }
+
+        .course-card:hover .course-icon {
+            
+        }
+
+        .course-title {
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .course-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .course-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .course-detail {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #475569;
+            font-weight: 600;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .course-detail:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-skills {
+            margin-bottom: 1.5rem;
+        }
+
+        .course-skills h4 {
+            color: #1e293b;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 18px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-tag:hover::before {
+            left: 100%;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 41, 59, 0.4);
+        }
+
+        .enroll-btn {
+            background: linear-gradient(135deg, #1e293b, #334155, #475569);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .enroll-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .enroll-btn:hover::before {
+            left: 100%;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 10px 25px rgba(30, 41, 59, 0.4),
+                0 0 20px rgba(71, 85, 105, 0.6);
+            background: linear-gradient(135deg, #334155, #475569, #64748b);
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #e67e22;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.95));
+            color: #e2e8f0;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-details {
+                flex-direction: column;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite, glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(30, 41, 59, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(30, 41, 59, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(30, 41, 59, 0);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 5px rgba(255, 107, 107, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(78, 205, 196, 0.8));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Online Teaching Platfrom</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Featured IT Courses</h1>
+        <p>Master the latest technologies and advance your career with our comprehensive IT courses designed by industry experts</p>
+    </section>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">10,000+</span>
+                    <span class="stat-label">Students Enrolled</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Job Placement Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Expert Instructors</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Industry Partners</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="courses-grid" id="courses">
+            <div class="course-card">
+                <span class="course-icon">💻</span>
+                <h3 class="course-title">Full Stack Web Development</h3>
+                <p class="course-description">Master both frontend and backend technologies to become a complete web developer. Learn modern frameworks, databases, and deployment strategies.</p>
+                <div class="course-details">
+                    <span class="course-detail">12 Months</span>
+                    <span class="course-detail">Beginner to Advanced</span>
+                    <span class="course-detail">₹45,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                    </div>
+                </div>
+                <button class="enroll-btn pulse">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <span class="course-icon">🤖</span>
+                <h3 class="course-title">Artificial Intelligence & Machine Learning</h3>
+                <p class="course-description">Dive into the world of AI and ML with hands-on projects. Learn algorithms, neural networks, and practical applications in various industries.</p>
+                <div class="course-details">
+                    <span class="course-detail">10 Months</span>
+                    <span class="course-detail">Intermediate</span>
+                    <span class="course-detail">₹55,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">Data Science</span>
+                    </div>
+                </div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <span class="course-icon">☁️</span>
+                <h3 class="course-title">Cloud Computing & DevOps</h3>
+                <p class="course-description">Master cloud platforms and DevOps practices. Learn to deploy, manage, and scale applications using modern cloud technologies.</p>
+                <div class="course-details">
+                    <span class="course-detail">8 Months</span>
+                    <span class="course-detail">Intermediate</span>
+                    <span class="course-detail">₹40,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">Terraform</span>
+                    </div>
+                </div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <span class="course-icon">📱</span>
+                <h3 class="course-title">Mobile App Development</h3>
+                <p class="course-description">Build native and cross-platform mobile applications. Learn iOS, Android development, and modern frameworks for mobile development.</p>
+                <div class="course-details">
+                    <span class="course-detail">9 Months</span>
+                    <span class="course-detail">Beginner to Advanced</span>
+                    <span class="course-detail">₹38,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">React Native</span>
+                        <span class="skill-tag">Flutter</span>
+                        <span class="skill-tag">Swift</span>
+                        <span class="skill-tag">Kotlin</span>
+                        <span class="skill-tag">Firebase</span>
+                    </div>
+                </div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <span class="course-icon">🔐</span>
+                <h3 class="course-title">Cybersecurity & Ethical Hacking</h3>
+                <p class="course-description">Protect digital assets and learn ethical hacking techniques. Understand security protocols, penetration testing, and incident response.</p>
+                <div class="course-details">
+                    <span class="course-detail">11 Months</span>
+                    <span class="course-detail">Intermediate</span>
+                    <span class="course-detail">₹48,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Penetration Testing</span>
+                        <span class="skill-tag">Network Security</span>
+                        <span class="skill-tag">Cryptography</span>
+                        <span class="skill-tag">Vulnerability Assessment</span>
+                        <span class="skill-tag">SIEM</span>
+                    </div>
+                </div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <span class="course-icon">📊</span>
+                <h3 class="course-title">Data Science & Analytics</h3>
+                <p class="course-description">Extract insights from data using statistical methods and visualization tools. Learn data mining, predictive modeling, and business intelligence.</p>
+                <div class="course-details">
+                    <span class="course-detail">10 Months</span>
+                    <span class="course-detail">Beginner to Advanced</span>
+                    <span class="course-detail">₹42,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Power BI</span>
+                    </div>
+                </div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <span class="course-icon">🎮</span>
+                <h3 class="course-title">Game Development</h3>
+                <p class="course-description">Create engaging games for multiple platforms. Learn game engines, 3D modeling, animation, and game design principles.</p>
+                <div class="course-details">
+                    <span class="course-detail">12 Months</span>
+                    <span class="course-detail">Beginner to Advanced</span>
+                    <span class="course-detail">₹35,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Unity</span>
+                        <span class="skill-tag">Unreal Engine</span>
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">3D Modeling</span>
+                        <span class="skill-tag">Game Design</span>
+                    </div>
+                </div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <span class="course-icon">⛓️</span>
+                <h3 class="course-title">Blockchain Development</h3>
+                <p class="course-description">Build decentralized applications and understand blockchain technology. Learn smart contracts, cryptocurrency, and distributed systems.</p>
+                <div class="course-details">
+                    <span class="course-detail">8 Months</span>
+                    <span class="course-detail">Advanced</span>
+                    <span class="course-detail">₹52,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Solidity</span>
+                        <span class="skill-tag">Ethereum</span>
+                        <span class="skill-tag">Web3</span>
+                        <span class="skill-tag">Smart Contracts</span>
+                        <span class="skill-tag">DeFi</span>
+                    </div>
+                </div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <span class="course-icon">🌐</span>
+                <h3 class="course-title">Internet of Things (IoT)</h3>
+                <p class="course-description">Connect the physical and digital worlds. Learn embedded systems, sensor integration, and IoT architecture for smart solutions.</p>
+                <div class="course-details">
+                    <span class="course-detail">9 Months</span>
+                    <span class="course-detail">Intermediate</span>
+                    <span class="course-detail">₹36,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">Raspberry Pi</span>
+                        <span class="skill-tag">MQTT</span>
+                        <span class="skill-tag">Sensors</span>
+                        <span class="skill-tag">Edge Computing</span>
+                    </div>
+                </div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <span class="course-icon">🎨</span>
+                <h3 class="course-title">UI/UX Design</h3>
+                <p class="course-description">Create beautiful and functional user interfaces. Learn design principles, user research, prototyping, and usability testing.</p>
+                <div class="course-details">
+                    <span class="course-detail">7 Months</span>
+                    <span class="course-detail">Beginner to Advanced</span>
+                    <span class="course-detail">₹32,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Adobe XD</span>
+                        <span class="skill-tag">Sketch</span>
+                        <span class="skill-tag">Prototyping</span>
+                        <span class="skill-tag">User Research</span>
+                    </div>
+                </div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <span class="course-icon">🔬</span>
+                <h3 class="course-title">Software Testing & QA</h3>
+                <p class="course-description">Ensure software quality through comprehensive testing strategies. Learn manual and automated testing, test planning, and quality assurance.</p>
+                <div class="course-details">
+                    <span class="course-detail">6 Months</span>
+                    <span class="course-detail">Beginner to Intermediate</span>
+                    <span class="course-detail">₹28,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Selenium</span>
+                        <span class="skill-tag">Manual Testing</span>
+                        <span class="skill-tag">API Testing</span>
+                        <span class="skill-tag">Test Planning</span>
+                        <span class="skill-tag">Bug Tracking</span>
+                    </div>
+                </div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+
+            <div class="course-card">
+                <span class="course-icon">🗄️</span>
+                <h3 class="course-title">Database Administration</h3>
+                <p class="course-description">Master database design, optimization, and management. Learn SQL, NoSQL databases, backup strategies, and performance tuning.</p>
+                <div class="course-details">
+                    <span class="course-detail">8 Months</span>
+                    <span class="course-detail">Intermediate</span>
+                    <span class="course-detail">₹34,000</span>
+                </div>
+                <div class="course-skills">
+                    <h4>Key Skills:</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Oracle</span>
+                        <span class="skill-tag">Database Design</span>
+                    </div>
+                </div>
+                <button class="enroll-btn">Enroll Now</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Sarvakshetra. All rights reserved. Empowering futures through quality education.</p>
+    </footer>
+
+    <script>
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add click handlers for enroll buttons
+        document.querySelectorAll('.enroll-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const courseTitle = this.closest('.course-card').querySelector('.course-title').textContent;
+                alert(`Enrollment process started for: ${courseTitle}\n\nYou will be redirected to the registration page.`);
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initially hide cards and observe them
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
